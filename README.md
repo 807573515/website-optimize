@@ -3,7 +3,7 @@
 ### 使用指南  
 将项目clone到本地 可在git中执行下面的命令   
 	git clone git@github.com:807573515/website-optimize.git 
-
+然后打开index.html 就OK了
 ### 优化内容
 
 #### Part 1: 优化 index.html 的 PageSpeed Insights 得分  

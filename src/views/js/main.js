@@ -406,13 +406,13 @@ var resizePizzas = function(size) {
   function changeSliderLabel(size) {
     switch(size) {
       case "1":
-        document.querySelector("#pizzaSize").innerHTML = "Small";
+        document.getElementById("pizzaSize").innerHTML = "Small";
         return;
       case "2":
-        document.querySelector("#pizzaSize").innerHTML = "Medium";
+        document.getElementById("pizzaSize").innerHTML = "Medium";
         return;
       case "3":
-        document.querySelector("#pizzaSize").innerHTML = "Large";
+        document.getElementById("pizzaSize").innerHTML = "Large";
         return;
       default:
         console.log("bug in changeSliderLabel");
@@ -422,42 +422,24 @@ var resizePizzas = function(size) {
   changeSliderLabel(size);
 
   // Returns the size difference to change a pizza element from one size to another. Called by changePizzaSlices(size).
-  function determineDx (elem, size) {
-    var oldwidth = elem.offsetWidth;
-    var windowwidth = document.querySelector("#randomPizzas").offsetWidth;
-    var oldsize = oldwidth / windowwidth;
-
-    // Changes the slider value to a percent width
-    function sizeSwitcher (size) {
-      switch(size) {
-        case "1":
-          return 25;
-        case "2":
-          return 33.33;
-        case "3":
-          return 50;
-        default:
-          console.log("bug in sizeSwitcher");
-      }
-    }
-
-    var newsize = sizeSwitcher(size);
-    var dx = (newsize - oldsize) * windowwidth;
-
-    return dx;
-  }
 
   // Iterates through pizza elements on the page and changes their widths
   function changePizzaSizes(size) {
-  	var randomWidth=document.querySelectorAll(".randomPizzaContainer").offsetWidth;
-  	
-  	var newwidth = randomWidth+'%';
+  	var newwidth;
+  	var randomPizza=document.querySelectorAll(".randomPizzaContainer"); //取到pizza容器
+  	switch(size) {
+        case "1":
+          newwidth=25;break;
+        case "2":
+           newwidth=33.33;break;
+        case "3":
+           newwidth=50;break;
+        default:
+          console.log("bug in sizeSwitcher");
+      }
 
-    for (var i = 0; i < document.querySelectorAll(".randomPizzaContainer").length; i++) {
-    //   	var dx = determineDx(document.querySelectorAll(".randomPizzaContainer")[i], size);
-  		// var newwidth = (document.querySelectorAll(".randomPizzaContainer")[i].offsetWidth + dx) + 'px';
-      
-      document.querySelectorAll(".randomPizzaContainer")[i].style.width = newwidth;
+    for (var i = 0; i < randomPizza.length; i++) {
+      randomPizza[i].style.width = newwidth+'%';
     }
   }
 
@@ -505,10 +487,10 @@ function logAverageFrame(times) {   // times is the array of User Timing measure
 function updatePositions() {
   frame++;
   window.performance.mark("mark_start_frame");
-
+  var scrollTop=document.body.scrollTop; //将scrollTop值取出来 避免reflow 
   var items = document.querySelectorAll('.mover');
   for (var i = 0; i < items.length; i++) {
-    var phase = Math.sin((document.body.scrollTop / 1250) + (i % 5));
+    var phase = Math.sin((scrollTop / 1250) + (i % 5));
     items[i].style.left = items[i].basicLeft + 100 * phase + 'px';
   }
 
@@ -529,7 +511,7 @@ window.addEventListener('scroll', updatePositions);
 document.addEventListener('DOMContentLoaded', function() {
   var cols = 8;
   var s = 256;
-  for (var i = 0; i < 200; i++) {
+  for (var i = 0; i < 30; i++) {
     var elem = document.createElement('img');
     elem.className = 'mover';
     elem.src = "images/pizza.png";
@@ -537,7 +519,7 @@ document.addEventListener('DOMContentLoaded', function() {
     elem.style.width = "73.333px";
     elem.basicLeft = (i % cols) * s;
     elem.style.top = (Math.floor(i / cols) * s) + 'px';
-    document.querySelector("#movingPizzas1").appendChild(elem);
+    document.getElementBuId("movingPizzas1").appendChild(elem);
   }
-  updatePositions();
+  // updatePositions();  感觉一开始就执行这个函数 不太合适 注释掉
 });
