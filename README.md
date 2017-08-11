@@ -1,10 +1,10 @@
 ## 网站性能优化项目
 
-你要做的是尽可能优化这个在线项目的速度。注意，请应用你之前在[网站性能优化课程](https://cn.udacity.com/course/website-performance-optimization--ud884/)中学习的技术来优化关键渲染路径并使这个页面尽可能快的渲染。
+### 使用指南  
+将项目clone到本地 可在git中执行下面的命令   
+	git clone git@github.com:807573515/website-optimize.git 
 
-开始前，请导出这个代码库并检查代码。
-
-### 指南
+### 优化内容
 
 #### Part 1: 优化 index.html 的 PageSpeed Insights 得分  
 1.压缩了所有图片和html文件 减小网络传输字节数  
