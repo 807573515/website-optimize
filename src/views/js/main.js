@@ -426,7 +426,8 @@ var resizePizzas = function(size) {
   // Iterates through pizza elements on the page and changes their widths
   function changePizzaSizes(size) {
   	var newwidth;
-  	var randomPizza=document.querySelectorAll(".randomPizzaContainer"); //取到pizza容器
+    var randomPizza=document.getElementsByClassName("randomPizzaContainer"); //取到pizza容器 这里改成了ByClassName
+
   	switch(size) {
         case "1":
           newwidth=25;break;
@@ -519,7 +520,7 @@ document.addEventListener('DOMContentLoaded', function() {
     elem.style.width = "73.333px";
     elem.basicLeft = (i % cols) * s;
     elem.style.top = (Math.floor(i / cols) * s) + 'px';
-    document.getElementBuId("movingPizzas1").appendChild(elem);
+    document.getElementById("movingPizzas1").appendChild(elem);
   }
   // updatePositions();  感觉一开始就执行这个函数 不太合适 注释掉
 });
